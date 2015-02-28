@@ -1,0 +1,40 @@
+{
+  "name": "sails-generator-automodel",
+  "version": "1.0",
+  "description": "Create models for Sails Js - Waterline",
+  "main":"index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/.git"
+  },
+  "keywords": [
+  	"automatic",
+    "model",
+    "Sails",
+    "Waterline"
+  ],
+  "author": {
+    "name": "Mikel Carozzi"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "~2.5.5",
+    "mysql-utilities": "~1.0.7",
+    "prompt":"~0.2.14",
+    "underscore":"~1.8.2",
+    "underscore.string":"~3.0.3"
+  },
+  "homepage": "https://github.com/balderdashy/sails-mysql",
+  "maintainers": [
+    {
+      "name": "Mikel Carozzi",
+      "email": "m.carozzi@gmail.com"
+    },
+  ],
+  "dist": {
+    "shasum": "35ecaa8353a31f78203e71494687178744e2505d",
+    "tarball": "http://registry.npmjs.org/sails-mysql/-/sails-mysql-0.10.11.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/sails-mysql/-/sails-mysql-0.10.11.tgz",
+}
