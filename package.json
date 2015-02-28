@@ -5,7 +5,7 @@
   "main":"index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/.git"
+    "url": "git://github.com/cadrogui/sails-generator-automodel.git"
   },
   "keywords": [
   	"automatic",
@@ -24,7 +24,7 @@
     "underscore":"~1.8.2",
     "underscore.string":"~3.0.3"
   },
-  "homepage": "https://github.com/balderdashy/sails-mysql",
+  "homepage": "https://github.com/cadrogui/sails-generator-automodel",
   "maintainers": [
     {
       "name": "Mikel Carozzi",
@@ -32,9 +32,9 @@
     },
   ],
   "dist": {
-    "shasum": "35ecaa8353a31f78203e71494687178744e2505d",
-    "tarball": "http://registry.npmjs.org/sails-mysql/-/sails-mysql-0.10.11.tgz"
+    "shasum": "",
+    "tarball": ""
   },
   "directories": {},
-  "_resolved": "https://registry.npmjs.org/sails-mysql/-/sails-mysql-0.10.11.tgz",
+  "_resolved": "",
 }
