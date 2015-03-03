@@ -13,16 +13,9 @@ The usage of this generator is a bite simple, you must clone this repo in your s
 #cd automodel
 ```
 
-Install AutoModel dependencies:
-
-```sh
-#sudo npm install
-```
-
 Link AutoModel
 ```sh
-#cd ..
-#npm link ./automodel
+#sudo npm link
 ```
 
 and finally you can use AutoModel
