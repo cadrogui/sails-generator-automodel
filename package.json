@@ -1,6 +1,6 @@
 {
   "name": "sails-generate-automodel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create models for Sails Js - Waterline",
   "main": "Generator.js",
   "scripts": {
