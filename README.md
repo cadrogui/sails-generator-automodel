@@ -1,7 +1,7 @@
 # Sails Generator AutoModel
 #### Generate models automatically for Sails Js or Waterline for Mysql connections
 
-##### Version 0.9.7
+##### Version 1.0.0
 
 One bad thing when you work with sails js is do all the models by hand... until now, this generator helps to do this task in a very simple way.
 
@@ -18,7 +18,7 @@ Link AutoModel
 #sudo npm link
 ```
 
-and finally you can use AutoModel
+and finally on your sails project root folder, you can use AutoModel
 
 ```sh
 #sails generate automodel

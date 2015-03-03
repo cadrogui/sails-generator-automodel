@@ -8,205 +8,16 @@
  * @help See http://links.sailsjs.org/docs/generators
  */
 
-/**
- * Module dependencies
- */
+var discover = require('./lib/discover.js'),
+    autogen = require('./lib/autogen.js'),
+    prompt = require('prompt'),
+    _s = require('underscore.string'),
+    ModelName = "",
+    _u = require('underscore');
 
 var util = require('util');
 var _ = require('lodash');
 _.defaults = require('merge-defaults');
-
-var config = require('../config/connections'),
-    _ = require('underscore'),
-    _s = require('underscore.string'),
-    mysql = require('mysql')
-    mysqlUtilities = require('mysql-utilities'),
-    fs = require('fs'),
-    connections = [config.connections],
-    allConnections = [],
-    allConnectionsNames = [],
-    mysqlConnections = [],
-    selectedConnection = "",
-    prompt = require('prompt'),
-    fields = [],
-    connection = "";
-
-var discover = {
-
-  /*
-    discover all connections in sails connections file
-  */
-
-  connections: function(fn){
-
-    for (var key in connections) {
-       var obj = connections[key];
-
-       for (var prop in obj) {
-
-          if(obj.hasOwnProperty(prop)){
-
-            allConnectionsNames.push(prop);
-
-            allConnections.push(obj[prop])
-          }
-       }
-    }
-
-    allConnections.forEach(function(e,i){
-
-      if(allConnections[i].adapter != 'sails-mysql'){
-
-        delete allConnections[i]
-        delete allConnectionsNames[i]
-
-      }else if(allConnections[i].adapter == 'sails-mysql'){
-
-        mysqlConnections.push({ name: allConnectionsNames[i],
-
-          before: function(value) {
-            if(value == 'y'){
-
-              selectedConnection = allConnectionsNames.indexOf(allConnectionsNames[i])
-
-              return true
-
-            }else{
-
-              return false
-            }
-          }
-        })
-      }
-
-    });
-
-    fn(allConnections)
-  },
-
-  /*
-    connect to mysql
-  */
-
-  setConn: function(){
-    connection = mysql.createConnection({
-      host     : allConnections[selectedConnection].host,
-      user     : allConnections[selectedConnection].user,
-      password : allConnections[selectedConnection].password,
-      database : allConnections[selectedConnection].database
-    });
-
-    mysqlUtilities.upgrade(connection);
-    mysqlUtilities.introspection(connection);
-
-    connection.connect();
-  }
-};
-
-
-var autogen = {
-
-  /*
-    get all tables for the selected mysql connection
-  */
-
-  getTables: function(fn){
-    var tables = []
-
-    connection.tables(function(err, table){
-      _.chain(table)
-      .map(function(k, v){
-        tables.push({ name: v})
-      })
-
-      fn(tables)
-    })
-  },
-
-  /*
-    get all fields for all tables in mysql connection
-  */
-
-  getFields: function(table, fn){
-    var fields = []
-    var key = {}
-
-    connection.fields(table, function(err, field){
-      _.chain(field)
-      .map(function(k, v){
-
-        fields.push({ name: v, Type: k.Type });
-
-        key[table] = fields
-      })
-
-      fn(key)
-    });
-  },
-
-  /*
-    get all foreign keys for all tables
-  */
-
-  getforeign: function(table, fn){
-    var foreigns = []
-    var key = {}
-
-    connection.foreign(table, function(err, foreign){
-      _.chain(foreign)
-      .map(function(k, v){
-        // foreigns.push({ constrain: k.CONSTRAINT_NAME, referenced_table: k.REFERENCED_TABLE_NAME,
-        //   referenced_column_name: k.REFERENCED_COLUMN_NAME, columnName: k.COLUMN_NAME})
-
-        foreigns.push({ model: _s.capitalize(k.REFERENCED_TABLE_NAME), columnName: k.COLUMN_NAME})
-
-        key[table] = foreigns
-      })
-
-      fn(key)
-    })
-
-  },
-
-  /*
-    generate the models
-  */
-
-  generate: function(fn){
-
-    var tb = []
-    var fields = [],
-        foreigns = []
-
-    autogen.getTables(function(tables){
-
-      tables.forEach(function(e, i){
-
-        autogen.getFields(e.name, function(field){
-          fields.push(field)
-        })
-
-        autogen.getforeign(e.name, function(foreign){
-          foreigns.push(foreign)
-        })
-
-      });
-
-      setTimeout(function(){
-        var tt = []
-
-        tt.push(fields);
-        tt.push(foreigns);
-
-        fn(tt);
-
-      }, 300)
-
-      connection.end()
-    })
-  },
-
-};
 
 module.exports = {
 
@@ -220,9 +31,9 @@ module.exports = {
 
       prompt.get(mysqlConnections, function (err, result) {
 
-        discover.setConn();
+        var connection = discover.setConn();
 
-        autogen.generate(function(g){
+        autogen.generate(connection, function(g){
 
           var ls = []
           var fields = g[0]
@@ -235,10 +46,9 @@ module.exports = {
 
           for(var i = 0; i<ls.length; ++i){
 
-            var tablaName = _.keys(ls[i].fields);
+            var tablaName = _u.keys(ls[i].fields);
             var ModelName
-
-            var name = _.chain(ls[i].fields)
+            var name = _u.chain(ls[i].fields)
             .map(function(k,v){
               ModelName = _s.capitalize(v)
             })
@@ -250,9 +60,9 @@ module.exports = {
               var type
               var tblsModel = []
 
-              for(var v = 0; v<_.values(ls[i].fields)[f].length; ++v){
+              for(var v = 0; v < _u.values(ls[i].fields)[f].length; ++v){
 
-                var element = _.values(ls[i].fields)[f][v]
+                var element = _u.values(ls[i].fields)[f][v]
 
                 switch(element.Type){
                   case 'datetime':
@@ -273,7 +83,6 @@ module.exports = {
                 if(element.name == 'id'){
                   props['id'] = { type: 'INTEGER', primaryKey: "TRUE" }
                 }
-
               }
 
               /*
@@ -282,10 +91,10 @@ module.exports = {
 
               var foreingKey
 
-              for(var f = 0; f<_.values(ls[i].foreigns).length; ++f){
-                for(var c = 0; c<_.values(ls[i].foreigns)[0].length; ++c){
+              for(var f = 0; f < _u.values(ls[i].foreigns).length; ++f){
+                for(var c = 0; c < _u.values(ls[i].foreigns)[0].length; ++c){
 
-                  foreingKey = _.values(ls[i].foreigns)[0][c].columnName
+                  foreingKey = _u.values(ls[i].foreigns)[0][c].columnName
 
                   // search foreign keys in properties model
 
@@ -293,11 +102,11 @@ module.exports = {
                     if(props.hasOwnProperty(prop)){
                       if(prop == foreingKey){
 
-                        var referencedTable = _s.capitalize(_.values(ls[i].foreigns)[0][c].model)
+                        var referencedTable = _s.capitalize(_u.values(ls[i].foreigns)[0][c].model)
 
-                        delete props[_.values(ls[i].foreigns)[0][c].columnName]
+                        delete props[_u.values(ls[i].foreigns)[0][c].columnName]
 
-                        props[referencedTable] = _.values(ls[i].foreigns)[0][c]
+                        props[referencedTable] = _u.values(ls[i].foreigns)[0][c]
 
                       }
                     }
@@ -320,7 +129,8 @@ module.exports = {
               scope.signature = 'Model created by AutoModel on '+scope.createdAt;
               scope.attrs = attrs
 
-              scope.filename = '../api/models/' + ModelName + '.js'
+              scope.filename = './api/models/' + ModelName + '.js'
+
               cb();
 
             }
