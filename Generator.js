@@ -320,7 +320,7 @@ module.exports = {
               scope.signature = 'Model created by AutoModel on '+scope.createdAt;
               scope.attrs = attrs
 
-              scope.filename = './api/models/' + ModelName + '.js'
+              scope.filename = '../api/models/' + ModelName + '.js'
               cb();
 
             }
