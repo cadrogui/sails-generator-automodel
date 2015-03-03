@@ -1,23 +1,27 @@
 {
-  "name": "sails-generator-automodel",
-  "version": "1.0",
+  "name": "sails-generate-automodel",
+  "version": "0.9.7",
   "description": "Create models for Sails Js - Waterline",
-  "main":"index.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/cadrogui/sails-generator-automodel.git"
+  "main": "Generator.js",
+  "scripts": {
+    "test": "mocha"
   },
   "keywords": [
-  	"automatic",
+    "automodel",
+    "generator",
+    "sails",
+    "generate",
+    "plugin",
+    "automatic",
     "model",
     "Sails",
     "Waterline"
   ],
-  "author": {
-    "name": "Mikel Carozzi"
-  },
+  "author": "Mikel Carozzi (cadrogui)",
   "license": "MIT",
   "dependencies": {
+  	"lodash": ">=2.4.x",
+  	"merge-defaults": ">=0.1.0",
     "mysql": "~2.5.5",
     "mysql-utilities": "~1.0.7",
     "prompt":"~0.2.14",
@@ -29,12 +33,16 @@
     {
       "name": "Mikel Carozzi",
       "email": "m.carozzi@gmail.com"
-    },
+    }
   ],
-  "dist": {
-    "shasum": "",
-    "tarball": ""
+  "devDependencies": {
+    "sails-generate": "*",
+    "reportback": "*",
+    "fs-extra": "*"
   },
-  "directories": {},
-  "_resolved": "",
+  "sailsGenerator": {
+    "type": "automodel",
+    "behavior": "overrides `sails generate automodel`",
+    "sailsVersion": "~0.10.0"
+  }
 }

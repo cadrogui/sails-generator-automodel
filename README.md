@@ -1,20 +1,40 @@
 # Sails Generator AutoModel
 #### Generate models automatically for Sails Js or Waterline for Mysql connections
 
-##### Version 1.0
+##### Version 0.9.7
 
 One bad thing when you work with sails js is do all the models by hand... until now, this generator helps to do this task in a very simple way.
 
-At this moment the geenrator is not complete, but the code to create the models is done, if you want to use you must clone in the node_modules folder in your sails app, and run like this:
 
+The usage of this generator is a bite simple, you must clone this repo in your sails project, and run:
+
+```sh
+#git clone https://github.com/cadrogui/sails-generator-automodel.git automodel
+#cd automodel
 ```
-#node index.js
+
+Install AutoModel dependencies:
+
+```sh
+#sudo npm install
+```
+
+Link AutoModel
+```sh
+#cd ..
+#npm link ./automodel
+```
+
+and finally you can use AutoModel
+
+```sh
+#sails generate automodel
 ```
 
 Automodel will find all conections that use sails-mysql adapter, and will prompt for usage.... and thats all, automodel will generate all files for represent you database.
 
 #### Associations
-AutoModel detects all the foreign keys and try to create the relations, but is not 100% efective, im working hard to implement a 100% effective solution for all type of relations, in version 1.0 AutoModel places all the foreignkeys in model not as field, as properties.
+At this version AutoModel can detect all foreign keys only as model attribute, if in your associations you need the virtual attribute collections you must create by your self, but half way is taken by AutoModel, in the next releases i will try to give the power to AutoModel to handle complete associations.
 
 #### AutoModel in action
 
@@ -66,8 +86,8 @@ module.exports = {
 As you can see automodel helps a lot with the tedious task of creating the models.
 
 #### To-do
-- Maybe use js templates for models, now all do programmatically
-- Emebed all code in sails generator
+- ~~Maybe use js templates for models, now all do programmatically~~
+- ~~Emebed all code in sails generator~~
 - Package the generator as npm
 - Implement more efficient ways to detect relations between models
 
