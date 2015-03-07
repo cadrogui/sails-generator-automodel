@@ -64,21 +64,7 @@ module.exports = {
 
                 var element = _u.values(ls[i].fields)[f][v]
 
-                switch(element.Type){
-                  case 'datetime':
-                    type = "DATE"
-                  break;
-
-                  case 'int(11)':
-                    type = "INTEGER"
-                  break;
-
-                  default:
-                    type = "STRING"
-                  break;
-                }
-
-                props[element.name] = type
+                props[element.name] = autogen.dataType(element.Type)
 
                 if(element.name == 'id'){
                   props['id'] = { type: 'INTEGER', primaryKey: "TRUE" }
