@@ -1,7 +1,7 @@
 # Sails Generator AutoModel
 #### Generate models automatically for Sails Js or Waterline for Mysql connections
 
-##### Version 1.0.1
+##### Version 1.1.0
 
 One bad thing when you work with sails js is do all the models by hand... until now, this generator helps to do this task in a very simple way.
 
@@ -25,6 +25,20 @@ and finally on your sails project root folder, you can use AutoModel
 ```
 
 Automodel will find all conections that use sails-mysql adapter, and will prompt for usage.... and thats all, automodel will generate all files for represent you database.
+
+### Data Types
+Automodel support all data types present in waterline:
+* string
+* text
+* integer
+* float
+* date
+* time
+* datetime
+* boolean
+* binary
+* array
+* json
 
 #### Associations
 At this version AutoModel can detect all foreign keys only as model attribute, if in your associations you need the virtual attribute collections you must create by your self, but half way is taken by AutoModel, in the next releases i will try to give the power to AutoModel to handle complete associations.
