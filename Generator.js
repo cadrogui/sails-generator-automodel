@@ -67,7 +67,7 @@ module.exports = {
                 props[element.name] = autogen.dataType(element.Type)
 
                 if(element.name == 'id'){
-                  props['id'] = { type: 'INTEGER', primaryKey: "TRUE" }
+                  props['id'] = { type: 'INTEGER', primaryKey: "TRUE", autoIncrement: "TRUE" }
                 }
               }
 
