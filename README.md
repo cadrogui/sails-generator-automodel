@@ -59,7 +59,8 @@ module.exports = {
     "attributes": {
         "id": {
             "type": "INTEGER",
-            "primaryKey": "TRUE"
+            "primaryKey": "TRUE",
+            "autoIncrement": "TRUE"
         },
         "name": "STRING",
         "Owners": {
@@ -81,7 +82,8 @@ module.exports = {
     "attributes": {
         "id": {
             "type": "INTEGER",
-            "primaryKey": "TRUE"
+            "primaryKey": "TRUE",
+            "autoIncrement": "TRUE"
         },
         "name": "STRING",
         "lastname": "STRING",
