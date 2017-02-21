@@ -1,30 +1,26 @@
-# Sails Generator AutoModel
+# Sails Mysql AutoGen
 #### Generate models automatically for Sails Js or Waterline for Mysql connections
 
-##### Version 1.1.0
+##### Version 2.0.0
 
 One bad thing when you work with sails js is do all the models by hand... until now, this generator helps to do this task in a very simple way.
 
 
-The usage of this generator is a bite simple, you must clone this repo in your sails project, and run:
+The usage of this generator is a bite simple.
 
 ```sh
-#git clone https://github.com/cadrogui/sails-generator-automodel.git automodel
-#cd automodel
+#npm i sails-mysql-autogen -g
 ```
 
-Link AutoModel
-```sh
-#sudo npm link
-```
+### Usage
 
-and finally on your sails project root folder, you can use AutoModel
+Go to the directory that will models be loaded, and run
 
 ```sh
-#sails generate automodel
+#sails-mysql-autogen
 ```
 
-Automodel will find all conections that use sails-mysql adapter, and will prompt for usage.... and thats all, automodel will generate all files for represent you database.
+Sails Mysql AutoGen will prompt connection data for usage.... and thats all, it will generate all files for represent you database, in the current directory.
 
 ### Data Types
 Automodel support all data types present in waterline:
@@ -94,10 +90,7 @@ module.exports = {
 
 As you can see automodel helps a lot with the tedious task of creating the models.
 
-#### To-do
-- ~~Maybe use js templates for models, now all do programmatically~~
-- ~~Emebed all code in sails generator~~
-- Package the generator as npm
-- Implement more efficient ways to detect relations between models
-
 I hope AutoModel helps to make all of your models as an easy task, as well for me.
+
+#### To-do
+- Detect Sails connections automatically

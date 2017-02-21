@@ -1,33 +1,17 @@
 {
-  "name": "sails-generate-automodel",
-  "version": "1.0.1",
+  "name": "sails-mysql-autogen",
+  "version": "2.0.2",
   "description": "Create models for Sails Js - Waterline",
-  "main": "Generator.js",
+  "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "start": "node index.js"
   },
-  "keywords": [
-    "automodel",
-    "generator",
-    "sails",
-    "generate",
-    "plugin",
-    "automatic",
-    "model",
-    "Sails",
-    "Waterline"
-  ],
+  "bin": {
+    "sails-mysql-autogen": "index.js"
+  },
+  "keywords": ["sails", "autogenerate", "models", "mysql", "waterline", "automatic", "generate"],
   "author": "Mikel Carozzi (cadrogui)",
   "license": "MIT",
-  "dependencies": {
-  	"lodash": ">=2.4.x",
-  	"merge-defaults": ">=0.1.0",
-    "mysql": "~2.5.5",
-    "mysql-utilities": "~1.0.7",
-    "prompt":"~0.2.14",
-    "underscore":"~1.8.2",
-    "underscore.string":"~3.0.3"
-  },
   "homepage": "https://github.com/cadrogui/sails-generator-automodel",
   "maintainers": [
     {
@@ -35,14 +19,13 @@
       "email": "m.carozzi@gmail.com"
     }
   ],
-  "devDependencies": {
-    "sails-generate": "*",
-    "reportback": "*",
-    "fs-extra": "*"
-  },
-  "sailsGenerator": {
-    "type": "automodel",
-    "behavior": "overrides `sails generate automodel`",
-    "sailsVersion": "~0.10.0"
+  "dependencies": {
+    "async": "^2.1.5",
+    "bluebird": "^3.4.7",
+    "mysql": "^2.13.0",
+    "mysql-utilities": "^1.0.10",
+    "prompt": "^1.0.0",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.3.4"
   }
 }
