@@ -4,12 +4,22 @@
   "description": "Create models for Sails Js - Waterline",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "bin": {
     "sails-mysql-autogen": "index.js"
   },
-  "keywords": ["sails", "autogenerate", "models", "mysql", "waterline", "automatic", "generate"],
+  "keywords": [
+    "sails",
+    "autogenerate",
+    "models",
+    "mysql",
+    "waterline",
+    "automatic",
+    "generate"
+  ],
   "author": "Mikel Carozzi (cadrogui)",
   "license": "MIT",
   "homepage": "https://github.com/cadrogui/sails-generator-automodel",
@@ -26,6 +36,8 @@
     "mysql-utilities": "^1.0.10",
     "prompt": "^1.0.0",
     "underscore": "^1.8.3",
-    "underscore.string": "^3.3.4"
-  }
+    "underscore.string": "^3.3.4",
+    "snyk": "^1.192.3"
+  },
+  "snyk": true
 }
