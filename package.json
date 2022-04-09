@@ -20,7 +20,7 @@
     }
   ],
   "dependencies": {
-    "async": "^2.1.5",
+    "async": "^3.2.2",
     "bluebird": "^3.4.7",
     "mysql": "^2.13.0",
     "mysql-utilities": "^1.0.10",
